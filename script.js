@@ -11,3 +11,5 @@ for (let i = 0; i < 2; i++) {
   console.log('wbrk');
 }
 console.log(i);
+
+console.log('commits');
