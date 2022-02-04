@@ -2,12 +2,18 @@
 const num = 266219;
 console.log(typeof  num);
 
-/* Вывести в консоль произведение (умножение) цифр этого числа
-Например: число 123, при помощи javaScript получить каждую цифру ( 1, 2, 3 ) и перемножить их. Правильно использовать цикл или методы перебора */
-let Count = "123";
-let myCount = (Number(Count[0]) * Number(Count[1]) * Number(Count[2]));
-console.log(myCount);
-// Сделал без цикла, потом исправлюсь
+
+let Count = String(num);
+console.log(Count);
+let mCount = (Count.length);
+console.log(mCount);
+let mymyCount = 0;
+let myCount = 0;
+
+
+ console.log(mymyCount);
+ console.log(myCount);
+
 
 //Полученный результат возвести в степень 3, используя только 1 оператор (Math.pow не подходит)
 let a = 3;

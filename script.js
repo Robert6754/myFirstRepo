@@ -7,20 +7,19 @@ fullPrice = 100000;
 adaptive = true;
 
 //Вывести в консоль тип данных значений переменных title, fullPrice, adaptive;
-console.log(title);
-console.log(fullPrice);
-console.log(adaptive);
+console.log(typeof title);
+console.log(typeof fullPrice);
+console.log(typeof adaptive);
 
 //Вывести в консоль длину строки screens
-console.log(screens.length);
+console.log("Длина строки screens: "+screens.length);
 
 //Вывести в консоль “Стоимость верстки экранов (screenPrice) рублей/ долларов/гривен/юани” и “Стоимость разработки сайта (fullPrice) рублей/ долларов/гривен/юани”
 
-let sPrice = `"Стоимость верстки экранов ${screenPrice} рублей / долларов / гривен / юани”`
-console.log(sPrice);
+console.log(`"Стоимость верстки экранов ${screenPrice} рублей / долларов / гривен / юаней”`);
 
-let fPrice = `"Стоимость разработки сайта ${fullPrice} рублей / долларов / гривен / юани"`
-console.log(fPrice);
+console.log(`"Стоимость разработки сайта ${fullPrice} рублей / долларов / гривен / юаней"`);
+
 
 //Привести строку screens к нижнему регистру и разбить строку на массив, вывести массив в консоль
 screens = screens.toLowerCase();
