@@ -1,8 +1,9 @@
+"use strict";
 let title, screens, screenPrice, rollback, fullPrice, adaptive;
 title = "lesson02";
 screens = "Простые, Сложные, Интерактивные";
 screenPrice = 123;
-rollback = 85;
+rollback = 25;
 fullPrice = 100000;
 adaptive = true;
 
@@ -14,11 +15,12 @@ console.log(typeof adaptive);
 //Вывести в консоль длину строки screens
 console.log("Длина строки screens: "+screens.length);
 
-//Вывести в консоль “Стоимость верстки экранов (screenPrice) рублей/ долларов/гривен/юани” и “Стоимость разработки сайта (fullPrice) рублей/ долларов/гривен/юани”
+//Вывести в консоль “Стоимость верстки экранов (screenPrice) рублей/ долларов/гривен/юани” 
+// и “Стоимость разработки сайта(fullPrice) рублей / долларов / гривен / юани”
 
-console.log(`"Стоимость верстки экранов ${screenPrice} рублей / долларов / гривен / юаней”`);
+console.log(`Стоимость верстки экранов ${screenPrice} рублей / долларов / гривен / юаней`);
 
-console.log(`"Стоимость разработки сайта ${fullPrice} рублей / долларов / гривен / юаней"`);
+console.log(`Стоимость разработки сайта ${fullPrice} рублей / долларов / гривен / юаней`);
 
 
 //Привести строку screens к нижнему регистру и разбить строку на массив, вывести массив в консоль
@@ -31,3 +33,4 @@ console.log(myArraySplits);
 
 let myFullPrice = fullPrice * (rollback / 100);
 console.log(myFullPrice);
+
