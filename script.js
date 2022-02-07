@@ -1,64 +1,75 @@
 "use strict";
-let title, screens, screenPrice, rollback, fullPrice, adaptive;
-title = "lesson02";
-screens = "Простые, Сложные, Интерактивные";
-screenPrice = 123;
-rollback = 25;
-fullPrice = 100000;
-adaptive = true;
-
-//Вывести в консоль тип данных значений переменных title, fullPrice, adaptive;
-console.log(typeof title);
-console.log(typeof fullPrice);
-console.log(typeof adaptive);
-
-//Вывести в консоль длину строки screens
-console.log("Длина строки screens: "+screens.length);
-
-//Вывести в консоль “Стоимость верстки экранов (screenPrice) рублей/ долларов/гривен/юани” 
-// и “Стоимость разработки сайта(fullPrice) рублей / долларов / гривен / юани”
-
-console.log(`Стоимость верстки экранов ${screenPrice} рублей / долларов / гривен / юаней`);
-
-console.log(`Стоимость разработки сайта ${fullPrice} рублей / долларов / гривен / юаней`);
-
-
-//Привести строку screens к нижнему регистру и разбить строку на массив, вывести массив в консоль
-screens = screens.toLowerCase();
-
-const myArraySplits = screens.trim().split(", ");
-console.log(myArraySplits);
-
-//Вывести в консоль Процент отката посреднику за работу (fullPrice * (rollback/100))
-
-let myFullPrice = fullPrice * (rollback / 100);
-console.log(myFullPrice);
-
-//Задания урок 3
-// 3
-title = prompt("Как называется ваш проект?");
-console.log(title);
-// 4
-screens = prompt("Какие типы экранов нужно разработать?");
-console.log(screens);
-// 5
-screenPrice = +prompt("Сколько будет стоить данная работа?");
-console.log(screenPrice);
-// 6
-adaptive = confirm("Нужен ли адаптив на сайте?");
-console.log(adaptive);
-// 7
+//блок объявления переменных
+let title = prompt("Как называется ваш проект?");
+let screens = prompt("Какие типы экранов нужно разработать?");
+let screenPrice = +prompt("Сколько будет стоить данная работа?");
+if (screenPrice === '' || isNaN(screenPrice)) {
+    alert('Было введено не число, попробуйте еще раз ввести стоимость разработки экранов');
+}
+let adaptive = confirm("Нужен ли адаптив на сайте?");
 let service1 = prompt("Какой дополнительный тип услуги нужен?");
 let servicePrice1 = +prompt("Сколько это будет стоить?");
+if (servicePrice1 === '' || isNaN(servicePrice1)) {
+    alert('Было введено не число, попробуйте еще раз ввести стоимость дополнительной услуги №1');
+}
 let service2 = prompt("Какой дополнительный тип услуги нужен?");
 let servicePrice2 = +prompt("Сколько это будет стоить?");
-//8
-fullPrice = (screenPrice + servicePrice1 + servicePrice2);
-console.log(fullPrice);
-// 9
-let servicePercentPrice = Math.ceil(fullPrice - (fullPrice * (rollback/100)));
-console.log(servicePercentPrice);
-//10
+if (servicePrice2 === '' || isNaN(servicePrice2)) {
+    alert('Было введено не число, попробуйте еще раз ввести стоимость дополнительной услуги №2');
+}
+let rollback = 10;
+let fullPrice = (screenPrice + servicePrice1 + servicePrice2);
+let servicePercentPrice = Math.ceil(fullPrice - (fullPrice * (rollback / 100)));
+
+// блок объявления функций
+
+const showTypeOf = function (variable) {
+  console.log(variable, typeof variable);
+}
+
+const getRollbackMessage = function (price) {
+  if (price >= 30000) {
+      return "Даем скидку в 10%"
+  }  else if (price >= 15000 && price < 30000) {
+     return "Даем скидку в 5%"
+  } else if (price < 15e3 && price >= 0) {
+      return "Скидка не предусмотрена"
+  } else {
+    return "Что то пошло не так"
+  }
+}
+/*
+// Проверка введенного числа, числовое или нет.
+if (screenPrice === '' || isNaN(screenPrice)) {
+    console.log('Было введено не число, попробуйте еще раз ввести стоимость разработки экранов');
+}
+
+if (servicePrice1 === '' || isNaN(servicePrice1)) {
+    console.log('Было введено не число, попробуйте еще раз ввести стоимость дополнительной услуги №1');
+}
+
+if (servicePrice2 === '' || isNaN(servicePrice2)) {
+    console.log('Было введено не число, попробуйте еще раз ввести стоимость дополнительной услуги №2');
+}
+
+*/
+
+showTypeOf(title);
+showTypeOf(screenPrice);
+showTypeOf(adaptive);
+
+console.log(getRollbackMessage(fullPrice));
+console.log(typeof title);
+console.log(typeof screenPrice);
+console.log(typeof adaptive);
+/*
+const myArraySplits = screens.trim().split(", ");
+console.log(myArraySplits);
+*/
+
+
+
+/*
 switch (true) {
   case fullPrice >= 3e4:
     console.log("Даем скидку в 10%");
@@ -70,3 +81,4 @@ switch (true) {
     console.log("Скидка не предусмотрена");
     break;
 }
+*/
