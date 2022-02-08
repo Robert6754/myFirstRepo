@@ -41,8 +41,13 @@ function getFullPrice(scr, asp) {
   return scr + asp;
 }
 //3
-const getTitle = function (title) {
-  return;
+const getTitle = function (str) {
+  if (!str) {
+    return "аргумент - пустая строка";
+  }
+  str = str.trim();
+  str = str.toLowerCase();
+  return str[0].toUpperCase() + str.slice(1);
 };
 //4
 const getServicePercentPrices = function (fuPr) {
@@ -64,36 +69,19 @@ const getRollbackMessage = function (price) {
     return "Что то пошло не так";
   }
 };
+
+// функционал
 allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
 fullPrice = getFullPrice(screenPrice, allServicePrices);
 servicePercentPrice = getServicePercentPrices(fullPrice);
-
-showTypeOf(title);
-showTypeOf(screenPrice);
-showTypeOf(adaptive);
+title = getTitle(title);
+//вывод в консоль
 
 console.log(typeof title);
 console.log(typeof screenPrice);
 console.log(typeof adaptive);
 
-console.log("Общая сумма разработчику " + getServicePercentPrices(fullPrice));
+console.log("Наименование проекта: " + title);
+console.log("Общая сумма разработчику " + servicePercentPrice);
 console.log("Сколько скидка?: " + getRollbackMessage(fullPrice));
 console.log("Дополнительные услуги стоят: " + allServicePrices);
-
-/*
-const myArraySplits = screens.trim().split(", ");
-console.log(myArraySplits);
-*/
-/*
-switch (true) {
-  case fullPrice >= 3e4:
-    console.log("Даем скидку в 10%");
-    break;
-  case fullPrice < 3e4 && fullPrice >= 15e3:
-    console.log("Даем скидку в 5%");
-    break;
-  case fullPrice < 15e3 && fullPrice >= 0:
-    console.log("Скидка не предусмотрена");
-    break;
-}
-*/
