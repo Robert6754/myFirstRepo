@@ -1,55 +1,71 @@
 "use strict";
+
 //блок объявления переменных
-let title = prompt("Как называется ваш проект?", "Калькулятор верстки");
-let screens = prompt("Какие типы экранов нужно разработать?", "Обычные");
-let screenPrice = +prompt("Сколько будет стоить данная работа?", "10000");
-if (screenPrice === "" || isNaN(screenPrice)) {
-  alert(
-    "Было введено не число, попробуйте еще раз ввести стоимость разработки экранов"
-  );
-}
-let adaptive = confirm("Нужен ли адаптив на сайте?");
-let service1 = prompt(
-  "Какой дополнительный тип услуги нужен?",
-  "Поиск на сайте"
-);
-let servicePrice1 = +prompt("Сколько это будет стоить?", 15000);
-if (servicePrice1 === "" || isNaN(servicePrice1)) {
-  alert(
-    "Было введено не число, попробуйте еще раз ввести стоимость дополнительной услуги №1"
-  );
-}
-let service2 = prompt("Какой дополнительный тип услуги нужен?", "Экспресс");
-let servicePrice2 = +prompt("Сколько это будет стоить?", 5000);
-if (servicePrice2 === "" || isNaN(servicePrice2)) {
-  alert(
-    "Было введено не число, попробуйте еще раз ввести стоимость дополнительной услуги №2"
-  );
-}
+let title;
+let screens;
+let screenPrice;
+let adaptive;
 let rollback = 10;
-let fullPrice = screenPrice + servicePrice1 + servicePrice2;
-let servicePercentPrice = Math.ceil(fullPrice - fullPrice * (rollback / 100));
+let fullPrice;
+let servicePercentPrice;
 let allServicePrices;
+let service1;
+let service2;
+
+console.log();
 
 // блок объявления функций
-//1
-const getAllServicePrices = function (ser1, ser2) {
-  return ser1 + ser2;
+
+const isNumber = function (num) {
+  return !isNaN(parseFloat(num)) && isFinite(num);
 };
-//2
+
+const asking = function () {
+  title = prompt("Как называется ваш проект?", "Калькулятор верстки");
+  screens = prompt("Какие типы экранов нужно разработать?", "Простые, Сложные");
+
+  //screenPrice = prompt("Сколько будет стоить данная работа?");
+  //1
+  do {
+    screenPrice = prompt("Сколько будет стоить данная работа?");
+  } while (!isNumber(screenPrice));
+
+  adaptive = confirm("Нужен ли адаптив на сайте?");
+};
+
+const getAllServicePrices = function () {
+  let sum = 0;
+
+  for (let i = 0; i < 2; i++) {
+    if (i === 0) {
+      service1 = prompt(
+        "Какой дополнительный тип услуги нужен?",
+        "Поиск на сайте"
+      );
+    } else if (i === 1) {
+      service2 = prompt("Какой дополнительный тип услуги нужен?", "Экспресс");
+    }
+    sum += +prompt("Сколько это будет стоить?");
+
+    while (!isNumber(sum)) {}
+  }
+  return sum;
+};
+
 function getFullPrice(scr, asp) {
   return scr + asp;
 }
-//3
+
 const getTitle = function (str) {
   if (!str) {
     return "аргумент - пустая строка";
   }
-  str = str.trim();
-  str = str.toLowerCase();
-  return str[0].toUpperCase() + str.slice(1);
+  // str = str.trim();
+  // str = str.toLowerCase();
+  // return str[0].toUpperCase() + str.slice(1);
+  return title.trim()[0].toUpperCase() + title.trim().substr(1).toLowerCase();
 };
-//4
+
 const getServicePercentPrices = function (fuPr) {
   return Math.ceil(fuPr - fuPr * (rollback / 100));
 };
@@ -71,17 +87,24 @@ const getRollbackMessage = function (price) {
 };
 
 // функционал
-allServicePrices = getAllServicePrices(servicePrice1, servicePrice2);
+asking();
+allServicePrices = getAllServicePrices();
 fullPrice = getFullPrice(screenPrice, allServicePrices);
 servicePercentPrice = getServicePercentPrices(fullPrice);
 title = getTitle(title);
+
 //вывод в консоль
 
+showTypeOf(title);
+showTypeOf(screenPrice);
+showTypeOf(adaptive);
+
+console.log("Сколько скидка?: " + getRollbackMessage(fullPrice));
 console.log(typeof title);
 console.log(typeof screenPrice);
 console.log(typeof adaptive);
 
+console.log("Длина строки screens " + screens.length);
 console.log("Наименование проекта: " + title);
 console.log("Общая сумма разработчику " + servicePercentPrice);
-console.log("Сколько скидка?: " + getRollbackMessage(fullPrice));
 console.log("Дополнительные услуги стоят: " + allServicePrices);
